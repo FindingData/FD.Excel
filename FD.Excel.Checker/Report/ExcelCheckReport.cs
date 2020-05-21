@@ -54,7 +54,7 @@ namespace FD.Excel.Checker {
 		private void Error(CheckErrorType type, string key, string message){
 
 			if (!CheckErrorList.ContainsKey(type))
-			    CheckErrorList.Add(type, new ExcelCheckError(key));
+			    CheckErrorList.Add(type, new ExcelCheckError());
 			CheckErrorList[type].AppendError(key, message);
 		}
 
