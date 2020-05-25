@@ -15,49 +15,89 @@ using System.Linq;
 
 
 namespace FD.Excel.Checker {
-	public class ExcelCheckError {
+    public class ExcelCheckError
+    {
 
-		/// <summary>
-		/// @param ="errorType"
-		/// </summary>
-		public ExcelCheckError(){
+        /// <param name="errorType"></param>
+        public ExcelCheckError()
+        {
 
-			this.ErrorList = new Dictionary<string, List<string>>();
-		}
+            this.ErrorList = new Dictionary<string, List<string>>();
+        }
 
-		/// <summary>
-		/// @param ="errorType"
-		/// </summary>
-		/// <param name="errorList"></param>
-		public ExcelCheckError(Dictionary<string, List<string>> errorList){
+        /// 
+        /// <param name="errorType"></param>
+        /// <param name="errorList"></param>
+        public ExcelCheckError(Dictionary<string, List<string>> errorList)
+        {
 
-			this.ErrorList = ErrorList;
-		}
+            this.ErrorList = ErrorList;
+        }
 
-		/// 
-		/// <param name="key"></param>
-		/// <param name="message"></param>
-		public void AppendError(string key, string message){
+        public string ErrorBrief
+        {
+            get
+            {
+                string result = null;
+                var i = 1;
+                foreach (var aError in ErrorList)
+                {
+                    var errorCount = aError.Value[0].Contains("*----")
+                                    ? aError.Value.Count - 1
+                                    : aError.Value.Count;
+                    if (i == 1)
+                    {
+                        result = string.Format("{0}:{1}（{2}处）；", i, aError.Key, errorCount);
+                    }
+                    //1:列错误（5处）；
+                    else
+                        result = string.Format("{0}{1}{2}:{3}（{4}处）；", result, Environment.NewLine, i,
+                            aError.Key, errorCount);
+                    i++;
+                }
+                return result;
+            }
+        }
+        //<br>\n private string _NewLinestr = System.Environment.NewLine;
+        public string ErrorDetailed
+        {
+            get
+            {
+                string result = null;
+                int i = 1;
+                foreach (KeyValuePair<string, List<string>> aError in ErrorList)
+                {
+                    if (i == 1)
+                        result = result + "<div class='f-export-error-item-num'>" + i + "." + aError.Key + ":</div>";
+                    else result = result + "<div class='f-export-error-item-num'>" + Environment.NewLine + i + "." + aError.Key + ":</div>";
+                    foreach (string aErrorDetail in aError.Value)
+                    {
+                        result = result + "<div class='f-export-error-item'>" + Environment.NewLine + aErrorDetail + "</div>";
+                    }
+                    i++;
+                }
+                return result;
+            }
+        }
 
-			if (!ErrorList.ContainsKey(key))
-			{
-			    this.ErrorList.Add(key, new List<string>());
-			}
-			this.ErrorList[key].Add(message);
-		}
+        public Dictionary<string, List<string>> ErrorList
+        {
+            get; set;
+        }
 
-		public string ErrorBrief{
-			get;  set;
-		}
+        /// 
+        /// <param name="key"></param>
+        /// <param name="message"></param>
+        public void AppendError(string key, string message)
+        {
 
-		public string ErrorDetail{
-			get;  set;
-		}
+            if (!ErrorList.ContainsKey(key))
+            {
+                this.ErrorList.Add(key, new List<string>());
+            }
+            this.ErrorList[key].Add(message);
+        }
 
-		public Dictionary<string,List<string>> ErrorList{
-			get;  set;
-		}
-
-	}//end ExcelCheckError
+    }//end ExcelCheckError
 
 }//end namespace FD.Excel.Checker

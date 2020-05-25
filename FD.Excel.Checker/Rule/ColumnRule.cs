@@ -15,84 +15,104 @@ using System.Linq;
 
 
 namespace FD.Excel.Checker {
-	public class ColumnRule {
+	public class ColumnRule
+	{
 
-		public ColumnRule(){
+		public ColumnRule()
+		{
 
 		}
 
-		public int ColumnIndex{
-			get;  set;
+
+		public string ColumnName
+		{
+			get; set;
 		}
 
-		public string ColumnName{
-			get;  set;
+		public int ColumnIndex
+		{
+			get; set;
 		}
 
-		public DateTime? DateTimeMax{
-			get;  set;
+		public string ExampleData
+		{
+			get; set;
 		}
 
-		public DateTime? DateTimeMin{
-			get;  set;
-		}
-
-		/// <summary>
-		/// 数据库数据类型
-		/// </summary>
-		public string DbDataType{
-			get;  set;
-		}
-
-		public decimal? DecimalMax{
-			get;  set;
-		}
-
-		public decimal? DecimalMin{
-			get;  set;
-		}
-
-		public Dictionary<string,decimal> DictList{
-			get;  set;
-		}
-
-		public string ExampleData{
-			get;  set;
-		}
-
-		public int FieldLength{
-			get;  set;
-		}
-
-		public int FieldSacle{
-			get;  set;
-		}
-
-		public string FKColumnName{
-			get;  set;
-		}
-
-		public bool IsFk{
-			get;  set;
-		}
-
-		public bool IsNullable{
-			get;  set;
-		}
-
-		public bool IsPk{
-			get;  set;
+		public string Remark
+		{
+			get; set;
 		}
 
 		/// <summary>
 		/// 实际数据类型
 		/// </summary>
-		public string MeanDataType{
-			get;  set;
+		public string MeanDataType
+		{
+			get; set;
 		}
 
-		public string Remark{
-			get;  set;
+		/// <summary>
+		/// 数据库数据类型
+		/// </summary>
+		public string DbDataType
+		{
+			get; set;
+		}
+
+		public int FieldLength
+		{
+			get; set;
+		} = 100;
+
+		public bool IsNullable
+		{
+			get; set;
+		} = true;
+
+		public bool IsPk
+		{
+			get; set;
+		}
+
+		public bool IsFk
+		{
+			get; set;
+		}
+
+		public string FKColumnName
+		{
+			get; set;
+		}
+
+		public Dictionary<string, decimal> DictList
+		{
+			get; set;
+		}
+
+		public int FieldSacle
+		{
+			get; set;
+		}
+
+		public decimal? DecimalMax
+		{
+			get; set;
+		}
+
+		public decimal? DecimalMin
+		{
+			get; set;
+		}
+
+		public DateTime? DateTimeMin
+		{
+			get; set;
+		}
+
+		public DateTime? DateTimeMax
+		{
+			get; set;
 		}
 
 	}//end ColumnRule

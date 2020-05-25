@@ -10,19 +10,25 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-
-
+using System.ComponentModel;
 
 namespace FD.Excel.Checker {
-	public enum CheckErrorType : int {
+    public enum CheckErrorType : int
+    {
 
-		ExcelRead,
-		ExcelStructure,
-		TemplateMatch,
-		PKCheck,
-		FKCheck,
-		ColumnCheck
+        [Description("Excel读取错误")]
+        ExcelRead,
+        [Description("Excel结构错误")]
+        ExcelStructure,
+        [Description("模版匹配错误")]
+        TemplateMatch,
+        [Description("主键错误")]
+        PKCheck,
+        [Description("外键错误")]
+        FKCheck,
+        [Description("Excel列错误")]
+        ColumnCheck
 
-	}//end CheckErrorType
+    }//end CheckErrorType
 
 }//end namespace FD.Excel.Checker

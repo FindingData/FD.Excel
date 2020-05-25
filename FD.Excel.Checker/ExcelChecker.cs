@@ -204,7 +204,7 @@ namespace FD.Excel.Checker {
 											}
 										}
 									}
-									catch (Exception ex)
+									catch (Exception)
 									{
 										_checkReport.ExcelStructureError("列名称读取失败", $"----[{sheetName}]工作表,第{colIndex + 1},列名称读取失败!");
 									}
@@ -410,10 +410,10 @@ namespace FD.Excel.Checker {
 							}
 						}
 					}
-					catch (Exception ex) //3.1数据类型检测
+					catch (Exception) //3.1数据类型检测
 					{
 						var message = $"----[读值失败]：尝试读取第{iRowNo}行 【{aColumnStructure.ColumnName}】的值失败，请手动将该单元格格式为“{cellTypeText}”!";
-						_checkReport.ColumnError($"[{aSheetStructure.SheetName}]表.[{aColumnStructure.ColumnName}]列", message);
+						_checkReport.ColumnError($"[{aSheetStructure.SheetName}]表.[{aColumnStructure.ColumnName}]列", message);						
 					}
 					if (value == null)
 					{
